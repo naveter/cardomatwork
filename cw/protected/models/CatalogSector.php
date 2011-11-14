@@ -38,8 +38,7 @@ class CatalogSector extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('comment', 'required'),
-			array('tid, parent', 'length', 'max'=>10),
+			array('tid, parent', 'numerical', 'integerOnly'=>true),
 			array('url_translit, title, ptitle', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -57,6 +56,13 @@ class CatalogSector extends CActiveRecord
 		return array(
 		);
 	}
+
+        // переопределение первичного ключа
+        public function primaryKey()
+        {
+            // Для составного первичного ключа следует использовать массив:
+            return array('tid', 'parent');
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

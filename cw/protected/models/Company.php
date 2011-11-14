@@ -65,7 +65,8 @@ class Company extends CActiveRecord
                     // получение всех ревизий компании
                     'revisions' => array(self::HAS_MANY, 'CompanyRevision', 'company', 'order'=>'revisions.editdate DESC'),
                     // связь с визитками данной компании
-                    'cards' => array(self::HAS_MANY, 'Card', 'companyid', 'order'=>'cards.adddate DESC'),
+                    'cards' => array(self::HAS_MANY, 'Card', 'companyid', 'condition'=>'cards.isarch='.Card::ISARCH_FALSE,
+                                                                          'order'=>'cards.adddate DESC'),
                     // сколько визиток есть у компании
                     'cardsCount' => array(self::STAT, 'Card', 'companyid', 'condition'=>'isarch='.Card::ISARCH_FALSE),
 		);

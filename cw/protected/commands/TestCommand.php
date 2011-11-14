@@ -13,6 +13,22 @@ class TestCommand extends CConsoleCommand
 {
     //public $verbose=true;
 
+    // работа с записями в CatalogSector
+    // ./yiic test catalogsector --tid=1909 --parent=0
+    public function actionCatalogSector($tid, $parent) {
+        $catalog_sector = CatalogSector::model()->findByPk(array('tid'=>$tid, 'parent'=>$parent));
+
+        if ( $catalog_sector ) {
+            print $catalog_sector->url_translit ."\n";
+        }
+    }
+
+    // проба транслитерации url
+    // ./yiic test transliteration --name="просто русская строка!"
+    public function actionTransliteration($name) {
+        print UrlTransliterate::cleanString($name) ."\n";
+    }
+
     // поиск компании и их визиток
     // ./yiic test company --id=1660
     public function actionCompany($id = NULL) {
@@ -28,6 +44,12 @@ class TestCommand extends CConsoleCommand
                 print $card->revision->lastname ."\n";
             }
         }
+
+        // вывести данные о запросах БД
+        ConsoleLogDB::$print = true;
+        
+        // запись в лог
+        Yii::log("Запущено действие company", 'info', 'application.commands.'. __CLASS__ .'.'. __FUNCTION__);
     }
 
     // работа с переменными

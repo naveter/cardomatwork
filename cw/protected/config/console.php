@@ -13,6 +13,8 @@ return array(
 		'application.components.*',
 	),
 
+        
+
 	// application components
 	'components'=>array(
 		
@@ -22,6 +24,7 @@ return array(
 			'username' => 'root',
 			'password' => '123456',
 			'charset' => 'utf8',
+                        'enableProfiling' => true,
 		),
 
             'log'=>array(
@@ -29,13 +32,22 @@ return array(
                 'routes'=>array(
                     array(
                             'class'=>'CFileLogRoute',
-                            'levels'=>'error, warning',
+                            'levels'=>'info',
                     ),
-                    array('class' => 'CProfileLogRoute', 'enabled' => true),
-
+//                    array(
+//                        'class'=>'CEmailLogRoute',
+//                        'levels'=>'error, warning',
+//                        'emails'=>'admin@example.com',
+//                    ),
+                    array( // configuration for the toolbar
+                      'class'=>'ConsoleLogDB',
+                      'levels'=>'trace',
+                     ),
 
                 ),
             ),
+
+            //'CatalogCommand' => array('verbose' => true),
 		
 	),
 );
