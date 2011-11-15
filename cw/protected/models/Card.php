@@ -75,6 +75,16 @@ class Card extends CActiveRecord
 		);
 	}
 
+        public function scopes()
+        {
+            return array(
+                // визитки, которые не в архиве
+                'noisarch'=>array(
+                    'condition'=>'isarch='. Card::ISARCH_FALSE,
+                ),
+            );
+        }
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

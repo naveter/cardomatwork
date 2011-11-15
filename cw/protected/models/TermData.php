@@ -55,7 +55,18 @@ class TermData extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    // связь term_data с term_data через term_hierarchy
+                    'parent'=>array(self::MANY_MANY, 'TermData', 'term_hierarchy(tid, parent)'),
 		);
+
+                /*
+                SELECT td.tid tid, td.name name, th.parent parent, td2.name as parentname
+                FROM term_data td
+                LEFT JOIN term_hierarchy th ON(td.tid = th.tid)
+                LEFT JOIN term_data as td2 ON td2.tid = th.parent
+                WHERE
+                td.vid = 7
+                 */
 	}
 
 	/**

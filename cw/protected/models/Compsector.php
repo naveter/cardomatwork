@@ -22,6 +22,12 @@ class Compsector extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        public function primaryKey()
+        {
+            return array('companyid');
+            // For composite primary key, return an array like the following
+            // return array('pk1', 'pk2');
+        }
 
 	/**
 	 * @return string the associated database table name
@@ -54,6 +60,7 @@ class Compsector extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'sectors' => array(self::HAS_ONE, 'CompanyRevision', 'id'),
 		);
 	}
 

@@ -64,11 +64,14 @@ class Company extends CActiveRecord
                     'revision' => array(self::BELONGS_TO, 'CompanyRevision', 'revision_id'),
                     // получение всех ревизий компании
                     'revisions' => array(self::HAS_MANY, 'CompanyRevision', 'company', 'order'=>'revisions.editdate DESC'),
+                    // количество
+
                     // связь с визитками данной компании
                     'cards' => array(self::HAS_MANY, 'Card', 'companyid', 'condition'=>'cards.isarch='.Card::ISARCH_FALSE,
                                                                           'order'=>'cards.adddate DESC'),
                     // сколько визиток есть у компании
                     'cardsCount' => array(self::STAT, 'Card', 'companyid', 'condition'=>'isarch='.Card::ISARCH_FALSE),
+                    
 		);
 	}
         
@@ -76,13 +79,9 @@ class Company extends CActiveRecord
         public function scopes()
         {
             return array(
-//                'published'=>array(
-//                    'condition'=>'status=1',
-//                ),
-//                'recently'=>array(
-//                    'order'=>'create_time DESC',
-//                    'limit'=>5,
-//                ),
+                'noisarch'=>array(
+                    'condition'=>'isarch='. Company::ISARCH_FALSE,
+                ),
             );
         }
 

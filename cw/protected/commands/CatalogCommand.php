@@ -25,28 +25,27 @@ class CatalogCommand extends CConsoleCommand
     // если появились, генерация алиасов в таблице cf_catalog_sector
     // ./yiic catalog sector
     public function actionSector() {
-
-        $sector_result = Yii::app()->db->createCommand("
-                        SELECT child.tid, child.name, IFNULL(child.parent, 0) as parent, td.name as parentname
-                        FROM (
-                                SELECT td.tid tid, td.name name, th.parent parent
-                                FROM term_data td, term_hierarchy th
-                                WHERE td.tid = th.tid AND td.vid = ". Variable::getVariable('cfcompany_vocabulary_sector') ."
-                        ) as child
-                        LEFT JOIN term_data as td ON td.tid = child.parent")->query();
+        $sector_result = TermData::model()->with('parent')->findAllByAttributes(array('vid'=>7));
 
         foreach($sector_result as $row) {
+            $ptid = 0;
+            $pname = "";
+            if ( $row->parent ) {
+                $ptid = $row->parent[0]->tid;
+                $pname = $row->parent[0]->name;
+            }
+
             // есть ли такая пара в catalog_sector
-            $catalog_sector = CatalogSector::model()->findByPk(array('tid'=>$row['tid'], 'parent'=>$row['parent']));
+            $catalog_sector = CatalogSector::model()->findByPk(array('tid'=>$row->tid, 'parent'=>$ptid));
 
             if ( $catalog_sector ) continue;
             
             // если такой записи нет, создание
-            $alias = UrlTransliterate::cleanString($row['name']);
+            $alias = UrlTransliterate::cleanString($row->name);
 
             // если сектор второго уровня
-            if ( $row['parent'] != 0 ) {
-                $alias_parent = UrlTransliterate::cleanString($row['parentname']);
+            if ( $ptid != 0 ) {
+                $alias_parent = UrlTransliterate::cleanString($pname);
                 $alias = $alias_parent. '/' .$alias;
             }
 
@@ -60,11 +59,11 @@ class CatalogCommand extends CConsoleCommand
 
             // новая запись
             $model = new CatalogSector();
-            $model->tid = $row['tid'];
+            $model->tid = $row->tid;
             $model->url_translit = $alias;
-            $model->title = $row['name'];
-            $model->parent = $row['parent'];
-            $model->ptitle = $row['parentname'];
+            $model->title = $row->name;
+            $model->parent = $ptid;
+            $model->ptitle = $pname;
             $model->save();
 
             $this->create_query++;
@@ -79,6 +78,68 @@ class CatalogCommand extends CConsoleCommand
     // ./yiic catalog compcount
     public function actionCompcount() {
 
+        //все записи из cf_catalog_sector
+        $catalog_sector = CatalogSector::model()->findAll();
+
+        $count_to_sleep = 0;
+        foreach ( $catalog_sector as $rowsector ) {
+            
+        }
+/*
+
+    $count = 0;
+    while ( $sector = db_fetch_object($sector_result) ) {
+        $query = "
+            SELECT COUNT(*)
+            FROM {cf_company} cfcomp, {cf_company_revision} cfcompr, {cf_compsector} cfcomps
+            WHERE cfcomp.revision_id = cfcompr.id AND cfcomp.isarch = 0 AND cfcomps.companyid = cfcompr.id
+            AND
+        ";
+
+        $sector->parent == 0 ? $query .= " (cfcomps.b1 = ". $sector->tid ." or cfcomps.b2 = ". $sector->tid ." or cfcomps.b3 = ". $sector->tid .")"
+                             : $query .= " (
+                                 (cfcomps.b1 = ". $sector->parent ." AND cfcomps.s1 = ". $sector->tid .")
+                                 OR
+                                 (cfcomps.b2 = ". $sector->parent ." AND cfcomps.s2 = ". $sector->tid .")
+                                 OR
+                                 (cfcomps.b3 = ". $sector->parent ." AND cfcomps.s3 = ". $sector->tid .")
+                                 )";
+
+        $sector_count = db_result(db_query($query));
+        $context['results']['count']++;
+
+        // есть ли такая запись в cf_catalog_count
+        $isset_record_data_result = db_query("SELECT * FROM {cf_catalog_count}
+                                              WHERE tid = %d AND ptid = %d", $sector->tid, $sector->parent);
+        $context['results']['count']++;
+        $isset_record_data = db_fetch_object($isset_record_data_result);
+
+        if ( $isset_record_data->tid ) {
+            if ( $isset_record_data->comp != $sector_count ) {
+                db_query("
+                    UPDATE {cf_catalog_count}
+                    SET comp = %d
+                    WHERE tid = %d AND ptid = %d
+                ", $sector_count, $sector->tid, $sector->parent);
+                $context['results']['count']++;
+            }
+        }
+        // вставка новой записи
+        else {
+
+            db_query("INSERT INTO {cf_catalog_count} (tid, ptid, comp, card) VALUES (%d, %d, %d, %d)"
+                    , $sector->tid, $sector->parent, $sector_count, 0);
+            $context['results']['count']++;
+        }
+    }
+
+    // дабы не перегружать особливо
+    sleep( variable_get('cfcatalog_batch_sleep', '2') );
+
+    // Сообщение выводимое под прогресс баром после окончания текущей операции
+    $context['message'] = 'Заполнение счётчиков компаний для секторов.';
+ *
+ */
         
     }
 
@@ -112,7 +173,7 @@ class CatalogCommand extends CConsoleCommand
         parent::beforeAction($action, $params);
 
         // показывать вывод только в режиме отладки
-        if ( YII_DEBUG == false ) return true;
+        if ( Yii::app()->params['verbose'] == false ) return true;
 
         $this->verbose = true;
 

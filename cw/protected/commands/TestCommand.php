@@ -13,6 +13,29 @@ class TestCommand extends CConsoleCommand
 {
     //public $verbose=true;
 
+    // поиск количества компаний в определённых секторах
+    // ./yiic test compcount --b=1909 --s=1911
+    public function actionCompcount($b, $s) {
+        $n = Company::model()->with(array('revision' => array(
+                                        'select' => false,
+                                        'condition' => '
+                                             (revision.b1 = :b AND revision.s1 = :s)
+                                             OR
+                                             (revision.b2 = :b AND revision.s2 = :s)
+                                             OR
+                                             (revision.b3 = :b AND revision.s3 = :s)
+                                            ',
+                                            'params' => array(':b' => $b, ':s' => $s),
+
+                                    )))->count();
+
+        //$n = Company::model()->with('revision')->count(array('condition' => 'revision.b1 = 1909'));
+
+        print $n;
+
+
+    }
+
     // работа с записями в CatalogSector
     // ./yiic test catalogsector --tid=1909 --parent=0
     public function actionCatalogSector($tid, $parent) {
@@ -34,9 +57,11 @@ class TestCommand extends CConsoleCommand
     public function actionCompany($id = NULL) {
 	//$condition='status='.Post::STATUS_PUBLISHED.' OR status='.Post::STATUS_ARCHIVED;
         $condition = "";
-	$company = Company::model()->with('revision')->with('cards')->findByPk($id, $condition);
+        $company = Company::model()->with('revision','cards','revision.term_opf', 'revision.sectors')->findByPk($id, $condition);
                 
         print "Название компании:". $company->revision->name ."\n";
+        print "ОПФ:". ($company->revision->term_opf ? $company->revision->term_opf->name : '') ."\n";
+        print_r($company->revision->sectors);
 
         if ( count($company->cards) > 0 ) {
             foreach ( $company->cards as $card ) {
@@ -50,6 +75,15 @@ class TestCommand extends CConsoleCommand
         
         // запись в лог
         Yii::log("Запущено действие company", 'info', 'application.commands.'. __CLASS__ .'.'. __FUNCTION__);
+    }
+
+    // поиск ревизии компании
+    // ./yiic test comprevision --id=1
+    public function actionComprevision($id) {
+        $comprevision = CompanyRevision::model()->with('sectors')->findByPk($id);
+
+        print_r($comprevision);
+
     }
 
     // работа с переменными

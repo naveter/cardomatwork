@@ -69,6 +69,12 @@ class CompanyRevision extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'company' => array(self::BELONGS_TO, 'Company', 'company'),
+
+                    // связка с секторами
+                    'sectors' => array(self::HAS_ONE, 'Compsector', 'companyid'),
+
+                    // таксономия
+                    'term_opf' => array(self::BELONGS_TO, 'TermData', 'opf'),
 		);
 	}
 
