@@ -143,6 +143,18 @@ class TestCommand extends CConsoleCommand
 
     }
 
+
+    /**
+     * Тестовое  действие
+     * @TODO проверка работы
+     */
+    public function actionTest() {
+        $model = Card::model()->findByPk(2247);
+
+        print_r($model);
+
+    }
+
     /**
      * This method is invoked right after an action finishes execution.
      * You may override this method to do some postprocessing for the action.

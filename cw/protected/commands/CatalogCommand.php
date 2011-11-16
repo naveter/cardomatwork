@@ -206,7 +206,6 @@ class CatalogCommand extends CConsoleCommand
 
     }
 
-
     /**
      * This method is invoked right after an action finishes execution.
      * You may override this method to do some postprocessing for the action.
