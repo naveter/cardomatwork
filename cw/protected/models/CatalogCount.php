@@ -55,6 +55,13 @@ class CatalogCount extends CActiveRecord
 		);
 	}
 
+        // переопределение первичного ключа
+        public function primaryKey()
+        {
+            // Для составного первичного ключа следует использовать массив:
+            return array('tid', 'ptid');
+        }
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

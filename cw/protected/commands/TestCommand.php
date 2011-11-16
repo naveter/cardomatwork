@@ -16,23 +16,62 @@ class TestCommand extends CConsoleCommand
     // поиск количества компаний в определённых секторах
     // ./yiic test compcount --b=1909 --s=1911
     public function actionCompcount($b, $s) {
-        $n = Company::model()->with(array('revision' => array(
+        $n = Company::model()->with('revision')
+                             ->with(array('revision.sectors' => array(
                                         'select' => false,
                                         'condition' => '
-                                             (revision.b1 = :b AND revision.s1 = :s)
+                                             (sectors.b1 = :b AND sectors.s1 = :s)
                                              OR
-                                             (revision.b2 = :b AND revision.s2 = :s)
+                                             (sectors.b2 = :b AND sectors.s2 = :s)
                                              OR
-                                             (revision.b3 = :b AND revision.s3 = :s)
+                                             (sectors.b3 = :b AND sectors.s3 = :s)
                                             ',
                                             'params' => array(':b' => $b, ':s' => $s),
+                              )))->count();
 
-                                    )))->count();
-
-        //$n = Company::model()->with('revision')->count(array('condition' => 'revision.b1 = 1909'));
+        //$n = Company::model()->with('revision')->with('revision.sectors')->count(array('condition' => 'sectors.b1 = 1909'));
 
         print $n;
 
+    }
+
+    // поиск количества визиток в определённых секторах
+    // ./yiic test cardcount --b=1941 --s=1946
+    public function actionCardcount($b, $s) {
+//        $n = Company::model()->with(array('revision')) //  => array("select" => false)
+//                             ->with(array('revision.sectors' => array(
+//                                        'select' => false,
+//                                        'condition' => '
+//                                             (sectors.b1 = :b AND sectors.s1 = :s)
+//                                             OR
+//                                             (sectors.b2 = :b AND sectors.s2 = :s)
+//                                             OR
+//                                             (sectors.b3 = :b AND sectors.s3 = :s)
+//                                            ',
+//                                            'params' => array(':b' => $b, ':s' => $s),
+//                              )))->with('cardsCount')->findAll();
+
+        $n = Card::model()->with(array('company.revision.sectors' => array(
+                                        'select' => false,
+                                        'condition' => '
+                                             (sectors.b1 = :b AND sectors.s1 = :s)
+                                             OR
+                                             (sectors.b2 = :b AND sectors.s2 = :s)
+                                             OR
+                                             (sectors.b3 = :b AND sectors.s3 = :s)
+                                            ',
+                                            'params' => array(':b' => $b, ':s' => $s),
+                              )))->count();
+
+        //$n = Company::model()->with('revision')->with('revision.sectors')->count(array('condition' => 'sectors.b1 = 1909'));
+        // 'answerSum'=>array(self::STAT, 'Answer', 'questionId', 'select' => 'SUM(answerSum.someFieldFromAnswerTableToSum)')
+
+        print_r($n);
+
+//        foreach ( $n as $comp ) {
+//            print_r($comp);
+//            break;
+//        }
 
     }
 
