@@ -122,6 +122,7 @@ class TestCommand extends CConsoleCommand
         $comprevision = CompanyRevision::model()->with('sectors')->findByPk($id);
 
         print_r($comprevision);
+        sub
 
     }
 
@@ -151,8 +152,7 @@ class TestCommand extends CConsoleCommand
     public function actionTest() {
         $model = Card::model()->findByPk(2247);
 
-        print_r($model);
-
+        
     }
 
     /**
