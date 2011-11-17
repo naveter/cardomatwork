@@ -14,6 +14,7 @@ $console = array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.components.catalogreg.*',
 	),        
 
 	// application components

@@ -121,8 +121,6 @@ class TestCommand extends CConsoleCommand
     public function actionComprevision($id) {
         $comprevision = CompanyRevision::model()->with('sectors')->findByPk($id);
 
-        print_r($comprevision);
-        sub
 
     }
 
@@ -144,13 +142,59 @@ class TestCommand extends CConsoleCommand
 
     }
 
+    /**
+     * тестирование CatalogRegComp класса
+     * ./yiic test catalogregcomp
+     */
+    public function actionCatalogregcomp() {
+
+        CatalogRegComp::getCountries();
+        print_r(CatalogRegComp::$countries);
+
+        //получить список всех секторов
+        $catalog_sectors = CatalogReg::getSectorsList();
+
+        // создание объекта
+        $obj = new CatalogRegComp($catalog_sectors[0], 'reg1');
+
+        // печать названия сектора
+        print $obj->getSectorsName() ."\n";
+
+        // получение условий
+        print $obj->getSectorCondition() ."\n";
+
+        // повторный вызов списка стран
+        print_r(CatalogRegComp::$countries);
+
+    }
+
+    /**
+     * тестирование catalogreg класса
+     * ./yiic test catalogreg
+     */
+    public function actionCatalogreg() {
+        //получить список всех секторов
+        $catalog_sectors = CatalogReg::getSectorsList();
+
+        // создание объекта
+        $obj = new CatalogReg($catalog_sectors[0], 'comp_reg1');
+
+        // печать названия сектора
+        print $obj->getSectorsName() ."\n";
+
+        // получение условий
+        print $obj->getSectorCondition() ."\n";
+
+    }
+
 
     /**
      * Тестовое  действие
      * @TODO проверка работы
      */
     public function actionTest() {
-        $model = Card::model()->findByPk(2247);
+            $parent = new stdClass();
+            print_r($parent);
 
         
     }

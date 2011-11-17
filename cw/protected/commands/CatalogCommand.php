@@ -25,54 +25,66 @@ class CatalogCommand extends CConsoleCommand
     // вызывается первым
     // ./yiic catalog sector
     public function actionSector() {
-        //$sector_result = TermData::model()->with('hierarchy2term')->findAllByAttributes(array('vid'=>7));
-        //$sector_result = TermData::model()->with(array('hierarchy2term' => array('joinType'=>'INNER JOIN', 'condition' => 't.vid = 7')))->findAll();
-
-        $sector_result = Yii::app()->db->createCommand("SELECT td.tid tid, td.name name, th.parent parent, IFNULL(td2.name, '') as parentname
-                                                        FROM term_data td
-                                                        LEFT JOIN term_hierarchy th ON td.tid = th.tid
-                                                        LEFT JOIN term_data as td2 ON td2.tid = th.parent
-                                                        WHERE
-                                                        td.vid = ". Variable::getVariable('cfcompany_vocabulary_sector'))->queryAll();
-
-        foreach($sector_result as $row) {
-
-            // есть ли такая пара в catalog_sector
-            $catalog_sector = CatalogSector::model()->findByPk(array('tid'=>$row['tid'], 'parent'=>$row['parent']));
-
-            if ( $catalog_sector ) continue;
-            
-            // если такой записи нет, создание
-            $alias = UrlTransliterate::cleanString($row['name']);
-
-            // если сектор второго уровня
-            if ( $row['parent'] != 0 ) {
-                $alias_parent = UrlTransliterate::cleanString($row['parentname']);
-                $alias = $alias_parent. '/' .$alias;
+        $sector_result = TermData::model()->with('hierarchy2term')->findAllByAttributes(array('vid'=>7));
+        
+        foreach ($sector_result as $sector) {
+            if ($sector->hierarchy2term) {
+                foreach ($sector->hierarchy2term as $parent)
+                        $this->_actionSector ($sector, $parent);
+            } else {
+                $this->_actionSector ($sector, null);
             }
-
-            // проверка на дубли alias
-            for ( $i = 0; $i < 10; $i++ ) {
-                $isset_sector = CatalogSector::model()->find('url_translit=:alias', array(':alias' => $alias));
-                
-                if ( $isset_sector ) $alias = $alias.$i;
-                else break;
-            }
-
-            // новая запись
-            $model = new CatalogSector();
-            $model->tid = $row['tid'];
-            $model->url_translit = $alias;
-            $model->title = $row['name'];
-            $model->parent = $row['parent'];
-            $model->ptitle = $row['parentname'];
-            $model->save();
-
-            $this->create_query++;
         }
 
         // дабы не перегружать особливо
-        sleep( Variable::getVariable('cfcatalog_batch_sleep') );        
+        sleep( Variable::getVariable('cfcatalog_batch_sleep') );
+    }
+
+    /**
+     * вспомогательный метод для actionSector
+     * @param TermData $child Data child
+     * @param TermData $parent Data parent
+     * @return null
+     */
+    private function _actionSector($child, $parent = null) {
+        if ( is_null($parent) ) {
+            $parent = new stdClass();
+            $parent->name = '';
+            $parent->tid = 0;
+        }
+
+        // есть ли такая пара в catalog_sector
+        $catalog_sector = CatalogSector::model()->findByPk(array('tid'=>$child->tid, 'parent'=>$parent->tid));
+
+        if ( $catalog_sector ) return;
+
+        // если такой записи нет, создание
+        $alias = UrlTransliterate::cleanString($child->name);
+
+        // если сектор второго уровня
+        if ( $parent->tid != 0 ) {
+            $alias_parent = UrlTransliterate::cleanString($parent->name);
+            $alias = $alias_parent. '/' .$alias;
+        }
+
+        // проверка на дубли alias
+        for ( $i = 0; $i < 10; $i++ ) {
+            $isset_sector = CatalogSector::model()->find('url_translit=:alias', array(':alias' => $alias));
+
+            if ( $isset_sector ) $alias = $alias.$i;
+            else break;
+        }
+
+        // новая запись
+        $model = new CatalogSector();
+        $model->tid = $child->tid;
+        $model->url_translit = $alias;
+        $model->title = $child->name;
+        $model->parent = $parent->tid;
+        $model->ptitle = $parent->name;
+        $model->save();
+
+        $this->create_query++;
     }
 
     // пересчёт счётчиков компаний в секторах
@@ -174,25 +186,26 @@ class CatalogCommand extends CConsoleCommand
      * ./yiic catalog compreg2
      */
     public function actionCompreg1() {
+        
         // формирование списка стран, в которых есть компании
-//        $countries_isset = array();
-//        $countries = TermData::model()->with(array('hierarchy' => array(
-//                                            'select' => 'parent',
-//                                            'condition' => 'hierarchy.parent = 0'
-//                                        )))->findAllByAttributes(array('vid' => Variable::getVariable('cfcompany_vocabulary_region')));
-//
-//        foreach ( $countries as $country ) {
-//            $count = Company::model()->with(array('revision' => array(
-//                                                    'select' => false,
-//                                                    'condition' => 'reg1 = :reg1',
-//                                                    'params' => array(':reg1' => $country->tid),
-//                                                  )))->count();
-//
-//            if ( $count > 0 ) array_push($countries_isset, $count->tid);
-//        }
+        $countries_isset = array();
+        $countries = TermData::model()->with(array('hierarchy' => array(
+                                            'select' => 'parent',
+                                            'condition' => 'hierarchy.parent = 0'
+                                        )))->findAllByAttributes(array('vid' => Variable::getVariable('cfcompany_vocabulary_region')));
+
+        foreach ( $countries as $country ) {
+            $count = Company::model()->with(array('revision' => array(
+                                                    'select' => false,
+                                                    'condition' => 'reg1 = :reg1',
+                                                    'params' => array(':reg1' => $country->tid),
+                                                  )))->count();
+
+            if ( $count > 0 ) array_push($countries_isset, $country->tid);
+        }
 
         // получение всех TID-ов секторов
-        $catalog_sectors = CatalogSector::model()->findAll();
+        $catalog_sectors = CatalogSector::model()->findAll(array("order" => "ptitle, title"));
 
         // заполнение таблицы регионов
         foreach( $catalog_sectors as $catalog_sector ) {
@@ -200,10 +213,51 @@ class CatalogCommand extends CConsoleCommand
             $catalog_sector->parent ? $sector_name = $catalog_sector->ptitle ." -> ". $sector_name : 0;
             $this->printMessage($sector_name);
 
-            
-            
-        }
+            $comp_reg1_array = array(); // коллекция для записи в БД
 
+            // настройка condition
+            $catalog_sector->parent == 0 ? $condition = 'sectors.b1 = :s OR sectors.b2 = :s OR sectors.b3 = :s'
+                                    : $condition = '(sectors.b1 = :b AND sectors.s1 = :s)
+                                                    OR (sectors.b2 = :b AND sectors.s2 = :s)
+                                                    OR (sectors.b3 = :b AND sectors.s3 = :s)';
+
+            // через каждую страну
+            foreach ( $countries_isset as $country ) {
+                $count = Company::model()->with(array('revision' => array(
+                                                            'select' => false,
+                                                            'condition' => 'reg1 = :reg1',
+                                                            'params' => array(':reg1' => $country),
+                                                        ),
+                                                        'revision.sectors' => array(
+                                                            'condition' => $condition,
+                                                            'params' => array(':s' => $catalog_sector->tid, ':b' => $catalog_sector->parent)
+                                                        )
+                                                      ))->count();
+
+                if ( $count > 0 ) $comp_reg1_array['k0']['k'. $country] = $count;
+            }
+
+            // если для данной пары сектора есть компании
+            // в каких-либо регионах
+            if ( count($comp_reg1_array) > 0 ) {
+                // есть ли такая запись в cf_company_region
+                $model = CatalogRegion::model()->findByPk(array('tid' => $catalog_sector->tid, 'ptid' => $catalog_sector->parent));
+
+                if ( $model ) {
+                    $model->comp_reg1 = json_encode($comp_reg1_array);
+                    $model->save();
+                }
+                else {
+                    $model = new CatalogRegion();
+                    $model->tid = $catalog_sector->tid;
+                    $model->ptid = $catalog_sector->parent;
+                    $model->comp_reg1 = json_encode($comp_reg1_array);
+                    $model->save();
+                }
+            }
+
+            sleep( Variable::getVariable('cfcatalog_batch_sleep') );
+        }
     }
 
     /**

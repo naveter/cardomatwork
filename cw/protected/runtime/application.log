@@ -37,3 +37,12 @@
 2011/11/16 17:02:26 [info] [application.commands.CatalogCommand.cardcount] created:0 updated:335 query:1031
 2011/11/16 19:15:51 [info] [application.commands.CatalogCommand.compreg1] created:0 updated:0 query:87
 2011/11/16 19:38:34 [info] [application.commands.CatalogCommand.compreg1] created:0 updated:0 query:3
+2011/11/17 12:57:49 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:5
+2011/11/17 13:00:11 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:5
+2011/11/17 13:01:14 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:5
+2011/11/17 13:08:49 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:5
+2011/11/17 13:14:53 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:5
+2011/11/17 13:58:21 [info] [application.commands.CatalogCommand.sector] created:335 updated:0 query:1016
+2011/11/17 14:00:02 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:345
+2011/11/17 14:34:13 [info] [application.commands.CatalogCommand.compreg1] created:0 updated:0 query:3
+2011/11/17 14:36:30 [info] [application.commands.CatalogCommand.compreg1] created:0 updated:0 query:3

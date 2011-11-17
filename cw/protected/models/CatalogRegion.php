@@ -40,7 +40,7 @@ class CatalogRegion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('comp_reg1, comp_reg2, comp_reg3, card_reg1, card_reg2, card_reg3', 'required'),
+			array('tid, ptid', 'required'),
 			array('tid, ptid', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -58,6 +58,13 @@ class CatalogRegion extends CActiveRecord
 		return array(
 		);
 	}
+
+        // в таблице нет первичного включа. переопределение
+        public function primaryKey()
+        {
+            // Для составного первичного ключа следует использовать массив:
+            return array('tid', 'ptid');
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
