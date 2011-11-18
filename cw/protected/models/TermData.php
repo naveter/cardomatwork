@@ -57,7 +57,10 @@ class TermData extends CActiveRecord
 		return array(
                     // связь term_data с term_data через term_hierarchy
                     'hierarchy2term' => array(self::MANY_MANY, 'TermData', 'term_hierarchy(tid, parent)'),
+                    // получить родителя
                     'hierarchy' => array(self::HAS_ONE, 'TermHierarchy', 'tid'),
+                    // получить список детей
+                    'childs' => array(self::HAS_MANY, 'TermHierarchy', 'parent'),
 		);
 
                 /*

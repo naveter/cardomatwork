@@ -59,7 +59,7 @@ class CatalogReg {
         $model = CatalogRegion::model()->findByPk(array('tid' => $this->CatalogSectorObj->tid, 'ptid' => $this->CatalogSectorObj->parent));
 
         if ( $model ) {
-            $model->$this->field = json_encode($this->regarray);
+            $model->{$this->field} = json_encode($this->regarray);
             $model->save();
             return;
         }
@@ -67,7 +67,7 @@ class CatalogReg {
         $model = new CatalogRegion();
         $model->tid = $this->CatalogSectorObj->tid;
         $model->ptid = $this->CatalogSectorObj->parent;
-        $model->$this->field = json_encode($this->regarray);
+        $model->{$this->field} = json_encode($this->regarray);
         $model->save();            
     }
 
@@ -97,6 +97,30 @@ class CatalogReg {
      */
     public static function getCountries() {
 
+    }
+
+    /**
+     * возвращает массив детей регионов из БД reg1 && reg2
+     * @param string $getfield name
+     * @return array массив TID регионов
+     */
+    public function getRegionsFromBD($getfield) {
+        $model = CatalogRegion::model()->findByPk(array('tid' => $this->CatalogSectorObj->tid,
+                                                        'ptid' => $this->CatalogSectorObj->parent),
+                                                  array('select' => $getfield));
+
+        // если нет компаний в данной категории
+        if ( $model->$getfield == '' ) return array();
+
+        $regions = array();
+        $fromdb = json_decode($model->$getfield);
+
+        // объединение регионов второго уровня в общий массив
+        foreach ( $fromdb as $k => $v ) {
+            foreach ( $v as $reg => $cnt ) array_push($regions, substr($reg, 1));
+        }
+
+        return $regions;
     }
     
 

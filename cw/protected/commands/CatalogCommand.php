@@ -183,6 +183,23 @@ class CatalogCommand extends CConsoleCommand
 
     /**
      * Пересчёт регионов для компаний
+     * ./yiic catalog compreg
+     */
+    public function actionCompreg() {
+        // получение секторов
+        $sectors = CatalogRegComp::getSectorsList();
+
+        foreach ($sectors as $sector) {
+            $cr = new CatalogRegComp($sector, 1);
+            $this->printMessage( $cr->getSectorsName() );
+            $cr->checkRegions();
+            sleep( Variable::getVariable('cfcatalog_batch_sleep') );
+        }
+
+    }
+
+    /**
+     * Пересчёт регионов для компаний
      * ./yiic catalog compreg2
      */
     public function actionCompreg1() {

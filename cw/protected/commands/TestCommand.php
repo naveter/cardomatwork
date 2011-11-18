@@ -29,8 +29,6 @@ class TestCommand extends CConsoleCommand
                                             'params' => array(':b' => $b, ':s' => $s),
                               )))->count();
 
-        //$n = Company::model()->with('revision')->with('revision.sectors')->count(array('condition' => 'sectors.b1 = 1909'));
-
         print $n;
 
     }
@@ -38,18 +36,6 @@ class TestCommand extends CConsoleCommand
     // поиск количества визиток в определённых секторах
     // ./yiic test cardcount --b=1941 --s=1946
     public function actionCardcount($b, $s) {
-//        $n = Company::model()->with(array('revision')) //  => array("select" => false)
-//                             ->with(array('revision.sectors' => array(
-//                                        'select' => false,
-//                                        'condition' => '
-//                                             (sectors.b1 = :b AND sectors.s1 = :s)
-//                                             OR
-//                                             (sectors.b2 = :b AND sectors.s2 = :s)
-//                                             OR
-//                                             (sectors.b3 = :b AND sectors.s3 = :s)
-//                                            ',
-//                                            'params' => array(':b' => $b, ':s' => $s),
-//                              )))->with('cardsCount')->findAll();
 
         $n = Card::model()->with(array('company.revision.sectors' => array(
                                         'select' => false,
@@ -63,15 +49,7 @@ class TestCommand extends CConsoleCommand
                                             'params' => array(':b' => $b, ':s' => $s),
                               )))->count();
 
-        //$n = Company::model()->with('revision')->with('revision.sectors')->count(array('condition' => 'sectors.b1 = 1909'));
-        // 'answerSum'=>array(self::STAT, 'Answer', 'questionId', 'select' => 'SUM(answerSum.someFieldFromAnswerTableToSum)')
-
         print_r($n);
-
-//        foreach ( $n as $comp ) {
-//            print_r($comp);
-//            break;
-//        }
 
     }
 
@@ -148,14 +126,16 @@ class TestCommand extends CConsoleCommand
      */
     public function actionCatalogregcomp() {
 
-        CatalogRegComp::getCountries();
-        print_r(CatalogRegComp::$countries);
+        //CatalogRegComp::getCountries();
+        //print_r(CatalogRegComp::$countries);
 
         //получить список всех секторов
         $catalog_sectors = CatalogReg::getSectorsList();
 
         // создание объекта
-        $obj = new CatalogRegComp($catalog_sectors[0], 'reg1');
+        $obj = new CatalogRegComp($catalog_sectors[0], '2');
+
+        print "tid:".$catalog_sectors[0]->tid. " parent:". $catalog_sectors[0]->parent."\n";
 
         // печать названия сектора
         print $obj->getSectorsName() ."\n";
@@ -163,9 +143,24 @@ class TestCommand extends CConsoleCommand
         // получение условий
         print $obj->getSectorCondition() ."\n";
 
-        // повторный вызов списка стран
-        print_r(CatalogRegComp::$countries);
+        // получение списка стран
+        print_r( $obj->getRegionsForSearch() );
 
+    }
+
+    /**
+     * Тестирование запроса поиска детей региона
+     * ./yiic test gettermchild --tid=28767
+     */
+    public function actionGettermchild($tid) {
+//        $model = TermData::model()->with(array('hierarchy' =>
+//                                            array('condition' => 'hierarchy.parent = :parent',
+//                                                  'params' => array(':parent' => $tid)),
+//                                              ));
+        $model = TermData::model()->with('childs')->findByPk($tid);
+
+        //print $model->tid ." ". $model->hierarchy->parent ."\n";
+        foreach ( $model->childs as $child ) print $child->tid ." ";
     }
 
     /**
