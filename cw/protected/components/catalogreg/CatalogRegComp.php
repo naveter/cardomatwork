@@ -64,7 +64,9 @@ class CatalogRegComp extends CatalogReg {
             foreach ( $parentreg as $preg ) {
                 // получение детей
                 $model = TermData::model()->with('childs')->findByPk($preg);
-                foreach ( $model->childs as $child ) $childs_arr['k'.$preg][] = $child->tid;
+
+                if ( $model && $model->childs )
+                    foreach ( $model->childs as $child ) $childs_arr['k'.$preg][] = $child->tid;
             }
 
             return $childs_arr;

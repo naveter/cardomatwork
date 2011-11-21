@@ -8,6 +8,7 @@ $ignore = include(dirname(__FILE__).'/ignore.php');
 $console = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Cardomat work',
+        'language' => 'ru_ru',
 
         'preload'=>array('log'),
     

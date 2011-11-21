@@ -10,7 +10,10 @@ class CatalogReg {
 
     protected $CatalogSectorObj; // объект CatalogSector
 
-    public static $countries; // список стран, в которых есть компании
+    public static $countries; // список стран, в которых есть компании или визитки
+
+    public $updated = 0; // счётчик обновлённых записей
+    public $created = 0; // счётчик созданных записей
 
     /**
      * конструктор
@@ -61,6 +64,7 @@ class CatalogReg {
         if ( $model ) {
             $model->{$this->field} = json_encode($this->regarray);
             $model->save();
+            $this->updated++;
             return;
         }
 
@@ -68,6 +72,7 @@ class CatalogReg {
         $model->tid = $this->CatalogSectorObj->tid;
         $model->ptid = $this->CatalogSectorObj->parent;
         $model->{$this->field} = json_encode($this->regarray);
+        $this->created++;
         $model->save();            
     }
 
@@ -110,7 +115,7 @@ class CatalogReg {
                                                   array('select' => $getfield));
 
         // если нет компаний в данной категории
-        if ( $model->$getfield == '' ) return array();
+        if ( !$model ) return array();
 
         $regions = array();
         $fromdb = json_decode($model->$getfield);

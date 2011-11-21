@@ -149,6 +149,42 @@ class TestCommand extends CConsoleCommand
     }
 
     /**
+     * тестирование CatalogRegCard класса
+     * ./yiic test catalogregcard
+     */
+    public function actionCatalogregcard() {
+
+            $count = Card::model()->with(array('company.revision' => array(
+                                                    'select' => false,
+                                                    'condition' => 'reg1 = :reg1',
+                                                    'params' => array(':reg1' => 28767),
+                                                  )))->count();
+
+            print $count;
+
+        //CatalogRegComp::getCountries();
+        //print_r(CatalogRegComp::$countries);
+
+        //получить список всех секторов
+//        $catalog_sectors = CatalogReg::getSectorsList();
+//
+//        // создание объекта
+//        $obj = new CatalogRegComp($catalog_sectors[0], '2');
+//
+//        print "tid:".$catalog_sectors[0]->tid. " parent:". $catalog_sectors[0]->parent."\n";
+//
+//        // печать названия сектора
+//        print $obj->getSectorsName() ."\n";
+//
+//        // получение условий
+//        print $obj->getSectorCondition() ."\n";
+//
+//        // получение списка стран
+//        print_r( $obj->getRegionsForSearch() );
+
+    }
+
+    /**
      * Тестирование запроса поиска детей региона
      * ./yiic test gettermchild --tid=28767
      */
@@ -188,8 +224,26 @@ class TestCommand extends CConsoleCommand
      * @TODO проверка работы
      */
     public function actionTest() {
-            $parent = new stdClass();
-            print_r($parent);
+
+        $sec = 1000;
+        $min = floor($sec/60);
+        $hour = floor( $sec/(60*60) );
+        $sec = $sec - ($hour*60*60) - ($min*60);
+
+        print $hour.":".$min.":".$sec."\n";
+
+        $seconds = 1000;
+        $diff = date('H', 1);
+//        print $diff;
+        print (date('H', $seconds) - $diff).":".date('i', $seconds) .":". date('s', $seconds)."\n";
+//
+//        $df = new CDateFormatter( Yii::app()->locale );
+//        print $df->formatDateTime($diff, NULL, 'medium'). '\n';
+//
+//        print date('O');
+
+//        print_r( Yii::app()->locale );
+
 
         
     }
