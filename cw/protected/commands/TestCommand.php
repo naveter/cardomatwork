@@ -225,24 +225,11 @@ class TestCommand extends CConsoleCommand
      */
     public function actionTest() {
 
-        $sec = 1000;
-        $min = floor($sec/60);
-        $hour = floor( $sec/(60*60) );
-        $sec = $sec - ($hour*60*60) - ($min*60);
+        $json_arr = json_decode("");
 
-        print $hour.":".$min.":".$sec."\n";
+        print count( $json_arr );
 
-        $seconds = 1000;
-        $diff = date('H', 1);
-//        print $diff;
-        print (date('H', $seconds) - $diff).":".date('i', $seconds) .":". date('s', $seconds)."\n";
-//
-//        $df = new CDateFormatter( Yii::app()->locale );
-//        print $df->formatDateTime($diff, NULL, 'medium'). '\n';
-//
-//        print date('O');
 
-//        print_r( Yii::app()->locale );
 
 
         

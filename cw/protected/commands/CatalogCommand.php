@@ -185,25 +185,6 @@ class CatalogCommand extends CConsoleCommand
     }
 
     /**
-     * Пересчёт регионов для компаний
-     * @param integer type of reg - 1, 2 or 3
-     * ./yiic catalog compreg --reg=1
-     */
-//    public function actionCompreg($reg) {
-//        // получение секторов
-//        $sectors = CatalogRegComp::getSectorsList();
-//
-//        foreach ($sectors as $sector) {
-//            //if ( $sector->parent == 0 ) continue;
-//
-//            $cr = new CatalogRegComp($sector, $reg);
-//            $this->printMessage( $cr->getSectorsName() );
-//            $cr->checkRegions();
-//            sleep( Variable::getVariable('cfcatalog_batch_sleep') );
-//        }
-//    }
-
-    /**
      * Пересчёт регионов для компаний и визиток
      * @param string comp or card
      * @param integer type of reg - 1, 2 or 3
@@ -213,7 +194,11 @@ class CatalogCommand extends CConsoleCommand
         // получение секторов
         $sectors = CatalogReg::getSectorsList();
 
+        //$nowrite = true;
         foreach ($sectors as $sector) {
+            
+//            if ( $sector->tid == 31470 && $sector->parent == 1983 ) $nowrite = false;
+//            if ( $nowrite ) continue;
             
             if ( $type == 'comp' ) $cr = new CatalogRegComp($sector, $reg);
             else $cr = new CatalogRegCard($sector, $reg);
@@ -230,104 +215,6 @@ class CatalogCommand extends CConsoleCommand
 
         ConsoleLogDB::$print = true;
     }
-
-    /**
-     * Пересчёт регионов для визиток
-     * @param integer type of reg - 1, 2 or 3
-     * ./yiic catalog cardreg --reg=1
-     */
-//    public function actionCardreg($reg) {
-//        // получение секторов
-//        $sectors = CatalogRegCard::getSectorsList();
-//
-//        foreach ($sectors as $sector) {
-//            //if ( $sector->parent == 0 ) continue;
-//
-//            $cr = new CatalogRegCard($sector, $reg);
-//            $this->printMessage( $cr->getSectorsName() );
-//            $cr->checkRegions();
-//            sleep( Variable::getVariable('cfcatalog_batch_sleep') );
-//        }
-//    }
-
-    /**
-     * Пересчёт регионов для компаний
-     * ./yiic catalog compreg2
-     */
-//    public function actionCompreg1() {
-//
-//        // формирование списка стран, в которых есть компании
-//        $countries_isset = array();
-//        $countries = TermData::model()->with(array('hierarchy' => array(
-//                                            'select' => 'parent',
-//                                            'condition' => 'hierarchy.parent = 0'
-//                                        )))->findAllByAttributes(array('vid' => Variable::getVariable('cfcompany_vocabulary_region')));
-//
-//        foreach ( $countries as $country ) {
-//            $count = Company::model()->with(array('revision' => array(
-//                                                    'select' => false,
-//                                                    'condition' => 'reg1 = :reg1',
-//                                                    'params' => array(':reg1' => $country->tid),
-//                                                  )))->count();
-//
-//            if ( $count > 0 ) array_push($countries_isset, $country->tid);
-//        }
-//
-//        // получение всех TID-ов секторов
-//        $catalog_sectors = CatalogSector::model()->findAll(array("order" => "ptitle, title"));
-//
-//        // заполнение таблицы регионов
-//        foreach( $catalog_sectors as $catalog_sector ) {
-//            $sector_name = $catalog_sector->title;
-//            $catalog_sector->parent ? $sector_name = $catalog_sector->ptitle ." -> ". $sector_name : 0;
-//            $this->printMessage($sector_name);
-//
-//            $comp_reg1_array = array(); // коллекция для записи в БД
-//
-//            // настройка condition
-//            $catalog_sector->parent == 0 ? $condition = 'sectors.b1 = :s OR sectors.b2 = :s OR sectors.b3 = :s'
-//                                    : $condition = '(sectors.b1 = :b AND sectors.s1 = :s)
-//                                                    OR (sectors.b2 = :b AND sectors.s2 = :s)
-//                                                    OR (sectors.b3 = :b AND sectors.s3 = :s)';
-//
-//            // через каждую страну
-//            foreach ( $countries_isset as $country ) {
-//                $count = Company::model()->with(array('revision' => array(
-//                                                            'select' => false,
-//                                                            'condition' => 'reg1 = :reg1',
-//                                                            'params' => array(':reg1' => $country),
-//                                                        ),
-//                                                        'revision.sectors' => array(
-//                                                            'condition' => $condition,
-//                                                            'params' => array(':s' => $catalog_sector->tid, ':b' => $catalog_sector->parent)
-//                                                        )
-//                                                      ))->count();
-//
-//                if ( $count > 0 ) $comp_reg1_array['k0']['k'. $country] = $count;
-//            }
-//
-//            // если для данной пары сектора есть компании
-//            // в каких-либо регионах
-//            if ( count($comp_reg1_array) > 0 ) {
-//                // есть ли такая запись в cf_company_region
-//                $model = CatalogRegion::model()->findByPk(array('tid' => $catalog_sector->tid, 'ptid' => $catalog_sector->parent));
-//
-//                if ( $model ) {
-//                    $model->comp_reg1 = json_encode($comp_reg1_array);
-//                    $model->save();
-//                }
-//                else {
-//                    $model = new CatalogRegion();
-//                    $model->tid = $catalog_sector->tid;
-//                    $model->ptid = $catalog_sector->parent;
-//                    $model->comp_reg1 = json_encode($comp_reg1_array);
-//                    $model->save();
-//                }
-//            }
-//
-//            sleep( Variable::getVariable('cfcatalog_batch_sleep') );
-//        }
-//    }
 
     /**
      * This method is invoked right after an action finishes execution.

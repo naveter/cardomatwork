@@ -25,7 +25,7 @@ class CatalogRegCard extends CatalogReg {
 
     /**
      * исполнение абстрактного метода
-     * получает список стран,  где есть компании и помещает их в статику
+     * получает список стран,  где есть визитки и помещает их в статику
      */
     public static function getCountries() {
         if ( is_array(self::$countries) ) return;
@@ -34,7 +34,7 @@ class CatalogRegCard extends CatalogReg {
         self::$countries = array();
 
         foreach ( $termcountries as $country ) {
-            $count = Card::model()->with(array('company.revision' => array(
+            $count = Card::model()->with(array('revision' => array(
                                                     'select' => false,
                                                     'condition' => 'reg1 = :reg1',
                                                     'params' => array(':reg1' => $country->tid),
@@ -45,7 +45,7 @@ class CatalogRegCard extends CatalogReg {
     }
 
     /**
-     * Получение списка регионов, в которых нужно искать компании
+     * Получение списка регионов, в которых нужно искать визитки
      * @return array of regions values
      */
     public function getRegionsForSearch() {
@@ -74,7 +74,7 @@ class CatalogRegCard extends CatalogReg {
     }
 
     /**
-     * Запуск проверки компаний в данном секторе
+     * Запуск проверки визитки в данном секторе
      */
      public function checkRegions() {
          // получение списка условий
@@ -88,16 +88,16 @@ class CatalogRegCard extends CatalogReg {
          // проход все подрегионов и регионов
          foreach ( $regions as $parentreg => $childarr ) {
              foreach ( $childarr as $reg ) {
-                $count = Card::model()->with(array('company.revision' => array(
-                                                            'select' => false,
-                                                            'condition' => 'reg'. $this->typenum .' = :reg',
-                                                            'params' => array(':reg' => $reg),
-                                                        ),
-                                                        'company.revision.sectors' => array(
-                                                            'condition' => $conditions,
-                                                            'params' => array(':s' => $this->CatalogSectorObj->tid, ':b' => $this->CatalogSectorObj->parent)
-                                                        )
-                                                      ))->count();
+                $count = Card::model()->with(array('revision' => array(
+                                                        'select' => false,
+                                                        'condition' => 'reg'. $this->typenum .' = :reg',
+                                                        'params' => array(':reg' => $reg),
+                                                   ),
+                                                    'company.revision.sectors' => array(
+                                                        'condition' => $conditions,
+                                                        'params' => array(':s' => $this->CatalogSectorObj->tid, ':b' => $this->CatalogSectorObj->parent)
+                                                   )
+                                                   ))->count();
 
                 if ( $count > 0 ) $this->regarray[ $parentreg ][ 'k'.$reg ] = $count;
              }

@@ -121,11 +121,14 @@ class CatalogReg {
         $fromdb = json_decode($model->$getfield);
 
         // объединение регионов второго уровня в общий массив
-        foreach ( $fromdb as $k => $v ) {
-            foreach ( $v as $reg => $cnt ) array_push($regions, substr($reg, 1));
+        if ( count($fromdb) > 0 ) {
+            foreach ( $fromdb as $k => $v ) {
+                foreach ( $v as $reg => $cnt ) array_push($regions, substr($reg, 1));
+            }
         }
 
         return $regions;
+
     }
     
 
