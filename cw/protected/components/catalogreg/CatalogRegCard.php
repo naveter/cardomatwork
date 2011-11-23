@@ -90,8 +90,9 @@ class CatalogRegCard extends CatalogReg {
              foreach ( $childarr as $reg ) {
                 $count = Card::model()->with(array('revision' => array(
                                                         'select' => false,
-                                                        'condition' => 'reg'. $this->typenum .' = :reg',
+                                                        'condition' => 'cardrevision.reg'. $this->typenum .' = :reg',
                                                         'params' => array(':reg' => $reg),
+                                                        'alias' => 'cardrevision',
                                                    ),
                                                     'company.revision.sectors' => array(
                                                         'condition' => $conditions,

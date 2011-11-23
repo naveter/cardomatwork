@@ -188,18 +188,17 @@ class CatalogCommand extends CConsoleCommand
      * Пересчёт регионов для компаний и визиток
      * @param string comp or card
      * @param integer type of reg - 1, 2 or 3
+     * @param integer onlycategory - генерить только эту категорию
      * ./yiic catalog regions --type=comp --reg=1
      */
-    public function actionRegions($type, $reg) {
+    public function actionRegions($type, $reg, $onlycategory = NULL) {
         // получение секторов
         $sectors = CatalogReg::getSectorsList();
 
-        //$nowrite = true;
         foreach ($sectors as $sector) {
-            
-//            if ( $sector->tid == 31470 && $sector->parent == 1983 ) $nowrite = false;
-//            if ( $nowrite ) continue;
-            
+            // если нужно сгенерить только одну категорию
+            if ( $onlycategory && $sector->tid != $onlycategory && $sector->parent != $onlycategory ) continue;
+
             if ( $type == 'comp' ) $cr = new CatalogRegComp($sector, $reg);
             else $cr = new CatalogRegCard($sector, $reg);
             

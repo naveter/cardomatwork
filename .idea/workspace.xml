@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f26372-5d02-45c4-9950-31635649f5f8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" afterPath="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/commands/TestCommand.php" afterPath="$PROJECT_DIR$/cw/protected/commands/TestCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" afterPath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" afterPath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/runtime/application.log" afterPath="$PROJECT_DIR$/cw/protected/runtime/application.log" />
     </list>
     <ignored path="cardomatwork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,10 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CatalogCommand.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CatalogCommand.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="57" selection-start="7676" selection-end="7676" vertical-scroll-proportion="0.0">
+            <state line="42" column="64" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.025210084">
               <folding />
             </state>
           </provider>
@@ -51,7 +49,16 @@
       <file leaf-file-name="CatalogRegCard.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="49" selection-start="2776" selection-end="2776" vertical-scroll-proportion="0.0">
+            <state line="92" column="85" selection-start="3206" selection-end="3206" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cw/protected/models/Card.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="89" selection-start="1995" selection-end="1995" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -66,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CatalogReg.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CatalogReg.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="7" selection-start="955" selection-end="955" vertical-scroll-proportion="0.6302521">
+            <state line="62" column="0" selection-start="2244" selection-end="2244" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -78,7 +85,7 @@
       <file leaf-file-name="TestCommand.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cw/protected/commands/TestCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="179" column="49" selection-start="6314" selection-end="6314" vertical-scroll-proportion="0.0">
+            <state line="81" column="0" selection-start="3233" selection-end="3233" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,9 +116,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" />
-        <option value="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" />
         <option value="$PROJECT_DIR$/cw/protected/commands/TestCommand.php" />
         <option value="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" />
+        <option value="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" />
       </list>
     </option>
   </component>
@@ -154,7 +161,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -165,13 +172,7 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes>
-      <pane id="Favorites" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
@@ -187,15 +188,26 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="102" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="119" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1026" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1028" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1026" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="117" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="112" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PublishConfig">
+    <servers>
+      <server id="78d58a6c-9fc7-4832-8165-04217be0cc2e">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+    </servers>
   </component>
   <component name="RunManager" selected="PHP Script.CatalogCommand.php">
     <configuration default="false" name="CatalogCommand.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" scriptParameters="catalog regions --type=comp --reg=1" path="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" workingDirectory="$PROJECT_DIR$">
@@ -231,21 +243,21 @@
         <option name="PhingTarget" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method>
-        <option name="FtpUpload" enabled="false">
-          <server_id />
-          <server_name />
-        </option>
-        <option name="PhingTarget" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="firefox" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
       <method>
+        <option name="PhingTarget" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method>
+        <option name="FtpUpload" enabled="false">
+          <server_id />
+          <server_name />
+        </option>
         <option name="PhingTarget" enabled="false" />
       </method>
     </configuration>
@@ -309,7 +321,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="1" width="1436" height="896" extended-state="0" />
+    <frame x="-4" y="1" width="1374" height="769" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32845744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -405,37 +417,34 @@
         <state line="31" column="15" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.2058011" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cw/protected/models/CatalogRegion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="1" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cw/protected/commands/TestCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="49" selection-start="6314" selection-end="6314" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="57" selection-start="7676" selection-end="7676" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="49" selection-start="2776" selection-end="2776" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="92" column="85" selection-start="3206" selection-end="3206" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/models/Card.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="89" selection-start="1995" selection-end="1995" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/models/CatalogRegion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="1" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="7" selection-start="955" selection-end="955" vertical-scroll-proportion="0.6302521">
+        <state line="62" column="0" selection-start="2244" selection-end="2244" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/commands/TestCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="0" selection-start="3233" selection-end="3233" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="64" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.025210084">
           <folding />
         </state>
       </provider>

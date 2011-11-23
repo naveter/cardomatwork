@@ -1,0 +1,19 @@
+Running action regions...
+IT, Телеком, Internet
+exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'revision'. The SQL statement executed was: SELECT COUNT(DISTINCT `t`.`id`) FROM `cf_card` `t`  LEFT OUTER JOIN `cf_card_revision` `revision` ON (`t`.`revision_id`=`revision`.`id`)  LEFT OUTER JOIN `cf_company` `company` ON (`t`.`companyid`=`company`.`id`)  LEFT OUTER JOIN `cf_company_revision` `revision` ON (`company`.`revision_id`=`revision`.`id`)  LEFT OUTER JOIN `cf_compsector` `sectors` ON (`sectors`.`companyid`=`revision`.`id`)  WHERE (reg1 = :reg) AND (sectors.b1 = :s OR sectors.b2 = :s OR sectors.b3 = :s)' in /home/bass/dev/cardomatwork/framework/db/CDbCommand.php:516
+Stack trace:
+#0 /home/bass/dev/cardomatwork/framework/db/CDbCommand.php(411): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 /home/bass/dev/cardomatwork/framework/db/ar/CActiveFinder.php(757): CDbCommand->queryScalar()
+#2 /home/bass/dev/cardomatwork/framework/db/ar/CActiveFinder.php(157): CJoinElement->count(Object(CDbCriteria))
+#3 /home/bass/dev/cardomatwork/framework/db/ar/CActiveRecord.php(1544): CActiveFinder->count(Object(CDbCriteria))
+#4 /home/bass/dev/cardomatwork/cw/protected/components/catalogreg/CatalogRegCard.php(100): CActiveRecord->count()
+#5 /home/bass/dev/cardomatwork/cw/protected/commands/CatalogCommand.php(206): CatalogRegCard->checkRegions()
+#6 [internal function]: CatalogCommand->actionRegions('card', '1')
+#7 /home/bass/dev/cardomatwork/framework/console/CConsoleCommand.php(135): ReflectionMethod->invokeArgs(Object(CatalogCommand), Array)
+#8 /home/bass/dev/cardomatwork/framework/console/CConsoleCommandRunner.php(63): CConsoleCommand->run(Array)
+#9 /home/bass/dev/cardomatwork/framework/console/CConsoleApplication.php(88): CConsoleCommandRunner->run(Array)
+#10 /home/bass/dev/cardomatwork/framework/base/CApplication.php(158): CConsoleApplication->processRequest()
+#11 /home/bass/dev/cardomatwork/framework/yiic.php(33): CApplication->run()
+#12 /home/bass/dev/cardomatwork/cw/protected/yiic.php(12): require_once('/home/bass/dev/...')
+#13 /home/bass/dev/cardomatwork/cw/protected/yiic(4): require_once('/home/bass/dev/...')
+#14 {main}

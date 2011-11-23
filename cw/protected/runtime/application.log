@@ -48,3 +48,15 @@
 2011/11/17 14:36:30 [info] [application.commands.CatalogCommand.compreg1] created:0 updated:0 query:3
 2011/11/18 18:26:37 [info] [application.commands.CatalogCommand.compreg] created:0 updated:0 query:832
 2011/11/21 14:29:51 [info] [application.commands.CatalogCommand.compreg] created:0 updated:0 query:311
+2011/11/23 15:20:20 [info] [application.commands.CatalogCommand.regions] created:0 updated:18 query:191 exec time: 0:04:46
+
+2011/11/23 15:34:42 [info] [application.commands.CatalogCommand.regions] created:0 updated:16 query:1203 exec time: 0:10:02
+
+2011/11/23 16:26:45 [info] [application.commands.CatalogCommand.regions] created:0 updated:13 query:1644 exec time: 0:03:42
+
+2011/11/23 16:34:24 [info] [application.commands.CatalogCommand.regions] created:0 updated:11 query:1346 exec time: 0:03:06
+
+2011/11/23 16:45:24 [info] [application.commands.CatalogCommand.regions] created:0 updated:7 query:339 exec time: 0:05:36
+
+2011/11/23 18:58:03 [info] [application.commands.CatalogCommand.sector] created:335 updated:0 query:1016 exec time: 0:00:01
+
