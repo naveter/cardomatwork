@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f26372-5d02-45c4-9950-31635649f5f8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/regions_comp_reg3" afterPath="$PROJECT_DIR$/cw/protected/regions_comp_reg3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" afterPath="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" afterPath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" afterPath="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/models/CatalogSector.php" afterPath="$PROJECT_DIR$/cw/protected/models/CatalogSector.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cw/protected/runtime/application.log" afterPath="$PROJECT_DIR$/cw/protected/runtime/application.log" />
     </list>
     <ignored path="cardomatwork.iws" />
@@ -40,7 +42,16 @@
       <file leaf-file-name="CatalogCommand.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="64" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.025210084">
+            <state line="211" column="68" selection-start="8074" selection-end="8074" vertical-scroll-proportion="0.7063712">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CatalogSector.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cw/protected/models/CatalogSector.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="56" column="70" selection-start="1582" selection-end="1582" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -49,7 +60,16 @@
       <file leaf-file-name="CatalogRegCard.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="85" selection-start="3206" selection-end="3206" vertical-scroll-proportion="0.0">
+            <state line="98" column="104" selection-start="3744" selection-end="3744" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CatalogRegComp.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegComp.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="85" selection-start="3939" selection-end="3939" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -76,7 +96,7 @@
       <file leaf-file-name="CatalogReg.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="0" selection-start="2244" selection-end="2244" vertical-scroll-proportion="0.0">
+            <state line="93" column="62" selection-start="3210" selection-end="3210" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -115,9 +135,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" />
         <option value="$PROJECT_DIR$/cw/protected/commands/TestCommand.php" />
         <option value="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php" />
+        <option value="$PROJECT_DIR$/cw/protected/models/CatalogSector.php" />
+        <option value="$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php" />
         <option value="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" />
       </list>
     </option>
@@ -161,7 +182,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -172,7 +193,132 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cardomatwork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cw" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catalogreg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Favorites" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
@@ -197,17 +343,6 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-  </component>
-  <component name="PublishConfig">
-    <servers>
-      <server id="78d58a6c-9fc7-4832-8165-04217be0cc2e">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </server>
-    </servers>
   </component>
   <component name="RunManager" selected="PHP Script.CatalogCommand.php">
     <configuration default="false" name="CatalogCommand.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" scriptParameters="catalog regions --type=comp --reg=1" path="$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php" workingDirectory="$PROJECT_DIR$">
@@ -321,7 +456,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="1" width="1374" height="769" extended-state="6" />
+    <frame x="2" y="1" width="1436" height="896" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32845744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -417,11 +552,6 @@
         <state line="31" column="15" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.2058011" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="85" selection-start="3206" selection-end="3206" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cw/protected/models/Card.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="89" selection-start="1995" selection-end="1995" vertical-scroll-proportion="0.0" />
@@ -432,19 +562,42 @@
         <state line="16" column="1" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2244" selection-end="2244" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cw/protected/commands/TestCommand.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="81" column="0" selection-start="3233" selection-end="3233" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogReg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="62" selection-start="3210" selection-end="3210" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegComp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="85" selection-start="3939" selection-end="3939" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/components/catalogreg/CatalogRegCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="104" selection-start="3744" selection-end="3744" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cw/protected/models/CatalogSector.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="70" selection-start="1582" selection-end="1582" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cw/protected/commands/CatalogCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="64" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.025210084">
+        <state line="211" column="68" selection-start="8074" selection-end="8074" vertical-scroll-proportion="0.7063712">
           <folding />
         </state>
       </provider>

@@ -6,8 +6,10 @@
  * The followings are the available columns in table 'cf_catalog_sector':
  * @property string $tid
  * @property string $url_translit
- * @property string $title
- * @property string $comment
+ * @property string $card_title
+ * @property string $card_comment
+ * @property string $comp_title
+ * @property string $comp_comment
  * @property string $parent
  * @property string $ptitle
  */
@@ -39,10 +41,10 @@ class CatalogSector extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('tid, parent', 'numerical', 'integerOnly'=>true),
-			array('url_translit, title, ptitle', 'length', 'max'=>255),
+			array('url_translit, card_title, comp_title, ptitle', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('tid, url_translit, title, comment, parent, ptitle', 'safe', 'on'=>'search'),
+			array('tid, url_translit, card_title, card_comment, comp_title, comp_comment, parent, ptitle', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,8 +74,10 @@ class CatalogSector extends CActiveRecord
 		return array(
 			'tid' => 'Tid',
 			'url_translit' => 'Url Translit',
-			'title' => 'Title',
-			'comment' => 'Comment',
+			'card_title' => 'Card Title',
+			'card_comment' => 'Card Comment',
+			'comp_title' => 'Comp Title',
+			'comp_comment' => 'Comp Comment',
 			'parent' => 'Parent',
 			'ptitle' => 'Ptitle',
 		);
@@ -92,8 +96,10 @@ class CatalogSector extends CActiveRecord
 
 		$criteria->compare('tid',$this->tid,true);
 		$criteria->compare('url_translit',$this->url_translit,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('card_title',$this->card_title,true);
+		$criteria->compare('card_comment',$this->card_comment,true);
+		$criteria->compare('comp_title',$this->comp_title,true);
+		$criteria->compare('comp_comment',$this->comp_comment,true);
 		$criteria->compare('parent',$this->parent,true);
 		$criteria->compare('ptitle',$this->ptitle,true);
 

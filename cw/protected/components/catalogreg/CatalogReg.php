@@ -33,7 +33,7 @@ class CatalogReg {
      * @param string название секторов
      */
     public function getSectorsName() {
-        $sector_name = $this->CatalogSectorObj->title;
+        $sector_name = $this->CatalogSectorObj->card_title;
         $this->CatalogSectorObj->parent ? $sector_name = $this->CatalogSectorObj->ptitle ." -> ". $sector_name : 0;
         return $sector_name;
     }
@@ -82,7 +82,7 @@ class CatalogReg {
      * @return CatalogSector
      */
     public static function getSectorsList() {
-        return CatalogSector::model()->findAll(array("order" => "ptitle, title"));
+        return CatalogSector::model()->findAll(array("order" => "ptitle, card_title"));
     }
 
     /**

@@ -82,7 +82,7 @@ class CatalogCommand extends CConsoleCommand
         $model = new CatalogSector();
         $model->tid = $child->tid;
         $model->url_translit = $alias;
-        $model->title = $child->name;
+        $model->card_title = $model->comp_title = $child->name;
         $model->parent = $parent->tid;
         $model->ptitle = $parent->name;
         $model->save();
@@ -189,7 +189,7 @@ class CatalogCommand extends CConsoleCommand
      * @param string comp or card
      * @param integer type of reg - 1, 2 or 3
      * @param integer onlycategory - генерить только эту категорию
-     * ./yiic catalog regions --type=comp --reg=1
+     * ./yiic catalog regions --type=comp --reg=1 --onlycategory=1909
      */
     public function actionRegions($type, $reg, $onlycategory = NULL) {
         // получение секторов

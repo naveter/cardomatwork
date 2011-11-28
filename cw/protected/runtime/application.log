@@ -60,3 +60,17 @@
 
 2011/11/23 18:58:03 [info] [application.commands.CatalogCommand.sector] created:335 updated:0 query:1016 exec time: 0:00:01
 
+2011/11/25 11:46:41 [info] [application.commands.CatalogCommand.regions] created:0 updated:17 query:652 exec time: 0:02:37
+
+2011/11/25 11:58:56 [info] [application.commands.CatalogCommand.regions] created:0 updated:17 query:2018 exec time: 0:08:32
+
+2011/11/25 13:04:05 [info] [application.commands.CatalogCommand.regions] created:0 updated:11 query:635 exec time: 0:52:15
+
+2011/11/28 15:09:23 [info] [application.commands.CatalogCommand.sector] created:0 updated:0 query:345 exec time: 0:00:01
+
+2011/11/28 15:09:56 [info] [application.commands.CatalogCommand.sector] created:1 updated:0 query:347 exec time: 0:00:01
+
+2011/11/28 15:13:58 [info] [application.commands.CatalogCommand.regions] created:0 updated:18 query:510 exec time: 0:02:11
+
+2011/11/28 15:31:07 [info] [application.commands.CatalogCommand.regions] created:0 updated:18 query:1946 exec time: 0:08:55
+
