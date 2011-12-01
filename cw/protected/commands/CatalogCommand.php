@@ -28,6 +28,11 @@ class CatalogCommand extends CConsoleCommand
     // вызывается первым
     // ./yiic catalog sector
     public function actionSector() {
+
+        // отменён. Для более надёжной работы репликации, таблица cf_catalog_sector
+        // не должна изменяться на этом сервере
+        // cf_catalog_sector будет обновляться на cardomat.ru кроном
+        /*
         $sector_result = TermData::model()->with('hierarchy2term')->findAllByAttributes(array('vid'=>7));
         
         foreach ($sector_result as $sector) {
@@ -37,7 +42,7 @@ class CatalogCommand extends CConsoleCommand
             } else {
                 $this->_actionSector ($sector, null);
             }
-        }
+        }*/
 
         // дабы не перегружать особливо
         sleep( Variable::getVariable('cfcatalog_batch_sleep') );
